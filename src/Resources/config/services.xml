@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="ProductTab\Extension\Content\Product\ProductTabExtension">
+            <tag name="shopware.entity.extension" />
+        </service>
+
+        <service id="ProductTab\Core\Content\Tab\TabDefinition">
+            <tag name="shopware.entity.definition" entity="tab" />
+        </service>
+
+        <service id="ProductTab\Core\Content\Tab\Aggregate\TabTranslation\TabTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="tab_translation" />
+        </service>
+
+        <service id="ProductTab\Extension\Content\Product\ProductTabDefinition">
+            <tag name="shopware.entity.definition" entity="product_tab" />
+        </service>
+
+        <service id="ProductTab\Subscriber\TabSubscriber">
+            <argument type="service" id="product_tab.repository" />
+            <argument type="service" id="tab.repository" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+    </services>
+</container>

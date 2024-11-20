@@ -1,0 +1,81 @@
+{% block sw_tab_list %}
+<sw-page class="sw-tab-list">
+
+    {% block sw_tab_list_search_bar %}
+    <template #search-bar>
+        <sw-search-bar initial-search-type="Tab"
+            :initial-search="term"
+            @search="onSearch" />
+    </template>
+    {% endblock %}
+
+    {% block sw_tab_list_smart_bar_header %}
+    <template #smart-bar-header>
+        {% block sw_tab_list_smart_bar_header_title %}
+        <h2>
+            {% block sw_tab_list_smart_bar_header_title_text %}
+            {{ $tc('sw-tab.list.textTabOverview') }}
+            {% endblock %}
+
+            {% block sw_tab_list_smart_bar_header_amount %}
+            <span v-if="!isLoading"
+                class="sw-page__smart-bar-amount">
+                ({{ total }})
+            </span>
+            {% endblock %}
+        </h2>
+        {% endblock %}
+    </template>
+    {% endblock %}
+
+    {% block sw_tab_list_actions %}
+    <template #smart-bar-actions>
+        {% block sw_tab_list_smart_bar_actions %}
+        <sw-button v-tooltip.bottom="{
+            message: $tc('sw-privileges.tooltip.warning'),
+            disabled: acl.can('tab.creator'),
+            showOnDisabledElements: true
+        }"
+            :router-link="{ name: 'sw.tab.create' }"
+            :disabled="!acl.can('tab.creator') || undefined"
+            class="sw-tab-list__add-tab"
+            variant="primary">
+            {{ $tc('sw-tab.list.buttonAddTab') }}
+        </sw-button>
+        {% endblock %}
+    </template>
+    {% endblock %}
+
+    {% block sw_tab_list_language_switch %}
+    <template #language-switch>
+        <sw-language-switch @on-change="onChangeLanguage" />
+    </template>
+    {% endblock %}
+
+    <template #content>
+        {% block sw_tab_list_content %}
+        <div class="sw-tab-list__content">
+            {% block sw_tab_list_grid %}
+            <sw-entity-listing v-if="entitySearchable"
+                class="sw-tab-list__grid"
+                detail-route="sw.tab.detail"
+                :is-loading="isLoading"
+                :columns="tabColumns"
+                :repository="tabRepository"
+                :items="tabs"
+                :placeholder="$tc('sw-tab.list.placeholderContent')"
+                :allow-edit="acl.can('tab.editor') || undefined"
+                :allow-inline-edit="acl.can('tab.editor') || undefined"
+                :allow-delete="acl.can('tab.deleter') || undefined"
+                :show-selections="acl.can('tab.deleter') || undefined"
+                identifier="sw-tab-list"
+                @update-records="updateTotal"
+                @page-change="onPageChange"
+                @column-sort="onSortColumn" />
+            {% endblock %}
+        </div>
+        {% endblock %}
+    </template>
+
+</sw-page>
+{% endblock %}

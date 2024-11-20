@@ -1,0 +1,41 @@
+{
+    "sw-tab": {
+        "general": {
+            "mainMenuItemGeneral": "Product tabs",
+            "descriptionTextModule": "Manage product tabs here.",
+            "placeholderSearchBar": "Search product tabs..."
+        },
+        "list": {
+            "textTabOverview": "Product tabs",
+            "textTotalTabs": "No Tabs | One Tab | {count} Tabs",
+            "buttonAddTab": "Add tab",
+            "columnName": "Title",
+            "columnContent": "Content"
+        },
+        "detail": {
+            "textHeadline": "New tab",
+            "buttonCancel": "Cancel",
+            "buttonSave": "Save",
+            "cardNameTabInfo": "Tab information",
+            "labelName": "Title",
+            "labelContent": "Content",
+            "placeholderName": "Enter tab title...",
+            "placeholderContent": "Enter content...",
+            "messageSaveSuccess": "Tab \"{name}\" has been saved."
+        }
+    },
+    "sw-product": {
+        "detail": {
+            "tabCardLabel": "Tabs",
+            "tabSelectLabel": "Associated tabs",
+            "tabSelectPlaceholder": "Add tab..."
+        }
+    },
+    "sw-privileges": {
+        "permissions": {
+            "tab": {
+                "label": "Product tabs"
+            }
+        }
+    }
+}

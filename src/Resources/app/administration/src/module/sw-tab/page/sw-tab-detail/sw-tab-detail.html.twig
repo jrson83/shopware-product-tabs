@@ -1,0 +1,103 @@
+{% block sw_tab_detail %}
+<sw-page class="sw-tab-detail">
+
+    {% block sw_tab_detail_header %}
+    <template #smart-bar-header>
+        <h2>
+            {{ placeholder(tab, 'name', $tc('sw-tab.detail.textHeadline')) }}
+        </h2>
+    </template>
+    {% endblock %}
+
+    {% block sw_tab_detail_actions %}
+    <template #smart-bar-actions>
+
+        {% block sw_tab_detail_actions_abort %}
+        <sw-button v-tooltip.bottom="tooltipCancel"
+            :disabled="tabIsLoading || undefined"
+            @click="onCancel">
+            {{ $tc('sw-tab.detail.buttonCancel') }}
+        </sw-button>
+        {% endblock %}
+
+        {% block sw_tab_detail_actions_save %}
+        <sw-button-process v-model:processSuccess="isSaveSuccessful"
+            v-tooltip.bottom="tooltipSave"
+            class="sw-tab-detail__save-action"
+            :is-loading="isLoading"
+            :disabled="isLoading || !acl.can('tab.editor') || undefined"
+            variant="primary"
+            @click.prevent="onSave">
+            {{ $tc('sw-tab.detail.buttonSave') }}
+        </sw-button-process>
+        {% endblock %}
+
+    </template>
+    {% endblock %}
+
+    {% block sw_tab_detail_language_switch %}
+    <template #language-switch>
+        <sw-language-switch :disabled="tabId == null || undefined"
+            :save-changes-function="saveOnLanguageChange"
+            :abort-change-function="abortOnLanguageChange"
+            @on-change="onChangeLanguage" />
+    </template>
+    {% endblock %}
+
+    {% block sw_tab_detail_content %}
+    <template #content>
+        <sw-card-view>
+            <template v-if="tabIsLoading">
+                <sw-skeleton variant="detail-bold" />
+                <sw-skeleton />
+            </template>
+
+            <template v-else>
+
+                {% block sw_tab_detail_content_language_info %}
+                <sw-language-info
+                    :entity-description="placeholder(tab, 'name', $tc('sw-tab.detail.textHeadline'))" />
+                {% endblock %}
+
+                {% block sw_tab_detail_base_basic_info_card %}
+                <sw-card position-identifier="sw-tab-detail-basic-info"
+                    :title="$tc('sw-tab.detail.cardNameTabInfo')">
+                    <sw-container class="sw-tab-detail__container"
+                        columns="repeat(auto-fit, minmax(250px, 1fr))"
+                        gap="0 30px">
+                        <div class="sw-tab-detail__base-info-wrapper">
+
+                            {% block sw_tab_detail_base_info_field_name %}
+                            <sw-text-field v-model:value="tab.name"
+                                :label="$tc('sw-tab.detail.labelName')"
+                                :placeholder="placeholder(tab, 'name', $tc('sw-tab.detail.placeholderName'))"
+                                name="name"
+                                validation="required"
+                                required
+                                :error="tabNameError"
+                                :disabled="!acl.can('tab.editor') || undefined" />
+                            {% endblock %}
+
+                        </div>
+                    </sw-container>
+
+                    {% block sw_tab_detail_base_info_field_content %}
+                    <sw-text-editor v-model:value="tab.content"
+                        :label="$tc('sw-tab.detail.labelContent')"
+                        :placeholder="placeholder(tab, 'content', $tc('sw-tab.detail.placeholderContent'))"
+                        :error="tabContentError"
+                        name="content"
+                        required
+                        sanitize-input
+                        sanitize-field-name="tab_translation.content"
+                        :disabled="!acl.can('tab.editor') || undefined" />
+                    {% endblock %}
+                </sw-card>
+                {% endblock %}
+            </template>
+        </sw-card-view>
+    </template>
+    {% endblock %}
+
+</sw-page>
+{% endblock %}

@@ -1,0 +1,41 @@
+{
+    "name": "jrson83/product-tabs-plugin",
+    "description": "Shopware 6 product tabs plugin.",
+    "type": "shopware-platform-plugin",
+    "version": "0.1.0",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jörn Spangenberg",
+            "email": "just@jrson.me",
+            "homepage": "https://jrson.me",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "shopware/administration": "~6.6.0",
+        "shopware/core": "~6.6.0"
+    },
+    "extra": {
+        "shopware-plugin-class": "ProductTab\\ProductTabsPlugin",
+        "copyright": "Jörn Spangenberg",
+        "label": {
+            "de-DE": "Shopware 6 Produkt-Tabs",
+            "en-GB": "Shopware 6 Product tabs"
+        },
+        "description": {
+            "de-DE": "Mit dieser Erweiterung können zusätzliche Tabs erstellt und den Produktdetailseiten zugeordnet werden.",
+            "en-GB": "With this extension, additional tabs can be created and assigned to product detail pages."
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "ProductTab\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ProductTab\\Tests\\": "tests/"
+        }
+    }
+}

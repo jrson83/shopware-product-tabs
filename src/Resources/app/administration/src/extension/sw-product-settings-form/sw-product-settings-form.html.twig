@@ -1,0 +1,22 @@
+{% block sw_product_settings_form_content %}
+{% parent %}
+
+<sw-container columns="repeat(auto-fit, minmax(250px, 1fr))"
+    gap="0px 30px">
+    <sw-inherit-wrapper v-model:value="product.extensions.tabs"
+        is-association
+        :has-parent="!!parentProduct.id"
+        :inherited-value="product.extensions.tabs"
+        :label="$tc('sw-product.detail.tabSelectLabel')">
+        <template #content="{ currentValue, isInherited, updateCurrentValue }">
+            <sw-entity-many-to-many-select :key="isInherited"
+                :localMode="product.isNew()"
+                :entity-collection="currentValue ? currentValue : []"
+                :disabled="isInherited || !allowEdit"
+                labelProperty="name"
+                :placeholder="$tc('sw-product.detail.tabSelectPlaceholder')"
+                @update:entity-collection="updateCurrentValue" />
+        </template>
+    </sw-inherit-wrapper>
+</sw-container>
+{% endblock %}

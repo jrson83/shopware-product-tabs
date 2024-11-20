@@ -1,0 +1,41 @@
+{
+    "sw-tab": {
+        "general": {
+            "mainMenuItemGeneral": "Produkt-Tabs",
+            "descriptionTextModule": "Verwaltung von Produkt-Tabs.",
+            "placeholderSearchBar": "Durchsuche alle Produkt-Tabs ..."
+        },
+        "list": {
+            "textTabOverview": "Produkt-Tabs",
+            "textTotalTabs": "Keine Tabs | Ein Tab | {count} Tabs",
+            "buttonAddTab": "Tab anlegen",
+            "columnName": "Titel",
+            "columnContent": "Inhalt"
+        },
+        "detail": {
+            "textHeadline": "Neuer Tab",
+            "buttonCancel": "Abbrechen",
+            "buttonSave": "Speichern",
+            "cardNameTabInfo": "Tabinformationen",
+            "labelName": "Titel",
+            "labelContent": "Inhalt",
+            "placeholderName": "Gib einen Titel ein ...",
+            "placeholderContent": "Gib einen Inhalt ein ...",
+            "messageSaveSuccess": "Der Tab \"{name}\" wurde erfolgreich gespeichert."
+        }
+    },
+    "sw-product": {
+        "detail": {
+            "tabCardLabel": "Tabs",
+            "tabSelectLabel": "Zugewiesene Tabs",
+            "tabSelectPlaceholder": "Tab hinzufügen ..."
+        }
+    },
+    "sw-privileges": {
+        "permissions": {
+            "tab": {
+                "label": "Produkt-Tabs"
+            }
+        }
+    }
+}
