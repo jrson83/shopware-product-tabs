@@ -78,6 +78,17 @@
                                 :disabled="!acl.can('tab.editor') || undefined" />
                             {% endblock %}
 
+                            {% block sw_tab_detail_base_info_field_position %}
+                            <sw-number-field v-model:value="tab.position"
+                                :label="$tc('sw-tab.detail.labelPosition')"
+                                :placeholder="placeholder(tab, 'position', $tc('sw-tab.detail.placeholderPosition'))"
+                                name="position"
+                                validation="required"
+                                required
+                                :error="tabPositionError"
+                                :disabled="!acl.can('tab.editor') || undefined" />
+                            {% endblock %}
+
                         </div>
                     </sw-container>
 

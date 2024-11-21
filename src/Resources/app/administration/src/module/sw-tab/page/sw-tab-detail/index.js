@@ -86,7 +86,7 @@ export default {
             }
         },
 
-        ...mapPropertyErrors('tab', ['name', 'content']),
+        ...mapPropertyErrors('tab', ['name', 'position', 'content']),
     },
 
     watch: {

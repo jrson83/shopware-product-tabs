@@ -9,73 +9,77 @@
 
 {% if productTabs.elements|length > 0 %}
 
-{% for el in productTabs %}
-{% set tabTabId = "tab-" ~ el.tab.translated.name|lower %}
-{% set tabTabHref = "#tab-" ~ el.tab.translated.name|lower ~ "-pane" %}
-{% set tabTabContent = "tab-" ~ el.tab.translated.name|lower ~ "-pane" %}
+{% for el in productTabs.elements|sort((a, b) => a.tab.position <=>
+    b.tab.position) %}
+    {% set tabTabId = "tab-" ~ el.tab.translated.name|lower %}
+    {% set tabTabHref = "#tab-" ~ el.tab.translated.name|lower ~ "-pane" %}
+    {% set tabTabContent = "tab-" ~ el.tab.translated.name|lower ~ "-pane" %}
 
-<li class="nav-item">
-    <a class="nav-link product-detail-tab-navigation-link"
-        id="{{ tabTabId }}"
-        data-bs-toggle="tab"
-        data-off-canvas-tabs="true"
-        href="{{ tabTabHref }}"
-        role="tab"
-        aria-controls="{{ tabTabContent }}"
-        aria-selected="true">
-        {{ el.tab.translated.name }}
-        <span class="product-detail-tab-navigation-icon">
-            {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
-        </span>
-        {% if el.tab.translated.content|length > 0 %}
-        <span class="product-detail-tab-preview">
-            {{
-            el.tab.translated.content|raw|striptags|sw_sanitize|u.truncate(125,
-            '…') }}
+    <li class="nav-item">
+        <a class="nav-link product-detail-tab-navigation-link"
+            id="{{ tabTabId }}"
+            data-bs-toggle="tab"
+            data-off-canvas-tabs="true"
+            href="{{ tabTabHref }}"
+            role="tab"
+            aria-controls="{{ tabTabContent }}"
+            aria-selected="true">
+            {{ el.tab.translated.name }}
+            <span class="product-detail-tab-navigation-icon">
+                {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
+            </span>
+            {% if el.tab.translated.content|length > 0 %}
+            <span class="product-detail-tab-preview">
+                {{
+                el.tab.translated.content|raw|striptags|sw_sanitize|u.truncate(125,
+                '…') }}
 
-            {# truncate always cuts down the length to 125 characters.
-            So it will only shorten the string if it exceeds 125 chars.
-            Therefor, only show the button when the length of the text is
-            greater or equal then 126 characters. #}
-            {% if el.tab.translated.content|length >= 126 %}
-            <span class="product-detail-tab-preview-more">{{
-                "detail.tabsPreviewMore"|trans|sw_sanitize }}</span>
+                {# truncate always cuts down the length to 125 characters.
+                So it will only shorten the string if it exceeds 125 chars.
+                Therefor, only show the button when the length of the text is
+                greater or equal then 126 characters. #}
+                {% if el.tab.translated.content|length >= 126 %}
+                <span class="product-detail-tab-preview-more">{{
+                    "detail.tabsPreviewMore"|trans|sw_sanitize }}</span>
+                {% endif %}
+            </span>
             {% endif %}
-        </span>
+        </a>
+    </li>
+
+    {% endfor %}
+
+    {% endif %}
+
+    {% endblock %}
+
+    {% block element_product_description_reviews_tabs_content_review %}
+    {% set productTabs = product.extensions.productTabs %}
+
+    {{ parent() }}
+
+    {% if productTabs.elements|length > 0 %}
+
+    {% for el in productTabs.elements|sort((a, b) => a.tab.position <=>
+        b.tab.position) %}
+        {% set tabTabId = "tab-" ~ el.tab.translated.name|lower %}
+        {% set tabTabContent = "tab-" ~ el.tab.translated.name|lower ~ "-pane"
+        %}
+
+        <div class="tab-pane fade"
+            id="{{ tabTabContent }}"
+            role="tabpanel"
+            aria-labelledby="{{ tabTabId }}">
+            {% sw_include
+            '@Storefront/storefront/component/product-tab/description.html.twig'
+            with {
+            tab: el.tab
+            } %}
+        </div>
+
+
+        {% endfor %}
+
         {% endif %}
-    </a>
-</li>
 
-{% endfor %}
-
-{% endif %}
-
-{% endblock %}
-
-{% block element_product_description_reviews_tabs_content_review %}
-{% set productTabs = product.extensions.productTabs %}
-
-{{ parent() }}
-
-{% if productTabs.elements|length > 0 %}
-
-{% for el in productTabs %}
-{% set tabTabId = "tab-" ~ el.tab.translated.name|lower %}
-{% set tabTabContent = "tab-" ~ el.tab.translated.name|lower ~ "-pane" %}
-
-<div class="tab-pane fade"
-    id="{{ tabTabContent }}"
-    role="tabpanel"
-    aria-labelledby="{{ tabTabId }}">
-    {% sw_include
-    '@Storefront/storefront/component/product-tab/description.html.twig' with {
-    tab: el.tab
-    } %}
-</div>
-
-
-{% endfor %}
-
-{% endif %}
-
-{% endblock %}
+        {% endblock %}

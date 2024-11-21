@@ -14,6 +14,8 @@ class TabEntity extends Entity
 
     protected ?string $parentId;
 
+    protected int $position;
+
     protected ?string $name;
 
     protected ?string $content;
@@ -28,6 +30,16 @@ class TabEntity extends Entity
     public function setParentId(?string $parentId): void
     {
         $this->parentId = $parentId;
+    }
+
+    public function getPosition(): int
+    {
+        return $this->position;
+    }
+
+    public function setPosition(int $position): void
+    {
+        $this->position = $position;
     }
 
     public function getName(): ?string

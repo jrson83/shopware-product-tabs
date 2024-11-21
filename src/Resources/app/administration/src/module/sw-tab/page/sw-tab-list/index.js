@@ -46,9 +46,15 @@ export default {
                     primary: true,
                 },
                 {
-                    property: 'content',
-                    label: this.$tc('sw-tab.list.columnContent'),
+                    property: 'position',
                     allowResize: true,
+                    label: this.$tc('sw-tab.list.columnPosition'),
+                    inlineEdit: 'number',
+                },
+                {
+                    property: 'content',
+                    allowResize: true,
+                    label: this.$tc('sw-tab.list.columnContent'),
                 },
             ]
         },

@@ -22,6 +22,7 @@ CREATE TABLE `tab` (
     `version_id` BINARY(16) NOT NULL,
     `parent_id` BINARY(16) NULL,
     `parent_version_id` BINARY(16) NOT NULL,
+    `position` INT(11) NOT NULL,
     `created_at` DATETIME(3) NOT NULL,
     `updated_at` DATETIME(3) NULL,
     PRIMARY KEY (`id`,`version_id`),

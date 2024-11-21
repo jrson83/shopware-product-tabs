@@ -10,6 +10,7 @@
             "textTotalTabs": "No Tabs | One Tab | {count} Tabs",
             "buttonAddTab": "Add tab",
             "columnName": "Title",
+            "columnPosition": "Position",
             "columnContent": "Content"
         },
         "detail": {
@@ -18,8 +19,10 @@
             "buttonSave": "Save",
             "cardNameTabInfo": "Tab information",
             "labelName": "Title",
+            "labelPosition": "Position",
             "labelContent": "Content",
             "placeholderName": "Enter tab title...",
+            "placeholderPosition": "10",
             "placeholderContent": "Enter content...",
             "messageSaveSuccess": "Tab \"{name}\" has been saved."
         }

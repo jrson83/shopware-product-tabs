@@ -46,6 +46,7 @@ class ProductTabDefinition extends MappingEntityDefinition
 
             (new FkField('tab_id', 'tabId', TabDefinition::class))->addFlags(new PrimaryKey(), new Required()),
             (new ReferenceVersionField(TabDefinition::class))->addFlags(new PrimaryKey(), new Required()),
+
             new ManyToOneAssociationField('product', 'product_id', ProductDefinition::class, 'id', false),
             new ManyToOneAssociationField('tab', 'tab_id', TabDefinition::class, 'id', false),
         ]);
