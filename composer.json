@@ -2,7 +2,7 @@
     "name": "jrson83/shopware-product-tabs",
     "description": "Shopware 6 product tabs plugin.",
     "type": "shopware-platform-plugin",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "license": "MIT",
     "authors": [
         {
