@@ -3,7 +3,25 @@
 {% block utilities_offcanvas_content %}
 
 {% block component_product_tab_description_container %}
+{% set shopDesktopTitle = config('ProductTabsPlugin.config.showDesktopTitle') %}
+{% set showMobileTitle = config('ProductTabsPlugin.config.showMobileTitle') %}
+
 <div class="product-tab-detail-description tab-pane-container">
+
+    {% if shopDesktopTitle or showMobileTitle %}
+
+    {% block component_product_tab_description_title %}
+    <h2 class="product-tab-detail-description-title
+            {% if showMobileTitle and not shopDesktopTitle %}
+            d-block d-sm-none
+            {% elseif not showMobileTitle and shopDesktopTitle %}
+            d-none d-sm-block
+            {% endif %}">
+        {{ tab.translated.name }}
+    </h2>
+    {% endblock %}
+
+    {% endif %}
 
     {% block component_product_tab_description_content %}
 

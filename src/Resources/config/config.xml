@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Display settings</title>
+        <title lang="de-DE">Anzeige Einstellungen</title>
+
+        <input-field type="bool">
+            <name>showDesktopTitle</name>
+            <defaultValue>true</defaultValue>
+            <label>Show title in tab content (desktop)</label>
+            <label lang="de-DE">Titel im Tab-Inhalt anzeigen (Desktop)</label>
+        </input-field>
+
+        <input-field type="bool">
+            <name>showMobileTitle</name>
+            <defaultValue>true</defaultValue>
+            <label>Show title in off-canvas content (mobile)</label>
+            <label lang="de-DE">Titel im Off-Canvas Inhalt anzeigen (Mobil)</label>
+        </input-field>
+
+        <input-field type="bool">
+            <name>showMobileContent</name>
+            <defaultValue>false</defaultValue>
+            <label>Show content below the title (mobile)</label>
+            <label lang="de-DE">Inhalt unter dem Titel anzeigen (mobil)</label>
+        </input-field>
+    </card>
+
+</config>

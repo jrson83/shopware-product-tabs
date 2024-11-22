@@ -1,16 +1,14 @@
-{% sw_extends
-'@Storefront/storefront/element/cms-element-product-description-reviews.html.twig'
-%}
+{% sw_extends '@Storefront/storefront/element/cms-element-product-description-reviews.html.twig' %}
 
 {% block element_product_description_reviews_tabs_navigation_review %}
+{% set showMobileContent = config('ProductTabsPlugin.config.showMobileContent') %}
 {% set productTabs = product.extensions.productTabs %}
 
 {{ parent() }}
 
 {% if productTabs.elements|length > 0 %}
 
-{% for el in productTabs.elements|sort((a, b) => a.tab.position <=>
-    b.tab.position) %}
+{% for el in productTabs.elements|sort((a, b) => a.tab.position <=> b.tab.position) %}
     {% set tabRaw = el.tab.translated.name|slugify|lower %}
     {% set tabTabId = "tab-" ~ tabRaw %}
     {% set tabTabHref = "#tab-" ~ tabRaw ~ "-pane" %}
@@ -29,16 +27,10 @@
             <span class="product-detail-tab-navigation-icon">
                 {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
             </span>
-            {% if el.tab.translated.content|length > 0 %}
+            {% if (el.tab.translated.content|length > 0) and showMobileContent %}
             <span class="product-detail-tab-preview">
-                {{
-                el.tab.translated.content|raw|striptags|sw_sanitize|u.truncate(125,
-                '…') }}
+                {{ el.tab.translated.content|raw|striptags|sw_sanitize|u.truncate(125, '…') }}
 
-                {# truncate always cuts down the length to 125 characters.
-                So it will only shorten the string if it exceeds 125 chars.
-                Therefor, only show the button when the length of the text is
-                greater or equal then 126 characters. #}
                 {% if el.tab.translated.content|length >= 126 %}
                 <span class="product-detail-tab-preview-more">{{
                     "detail.tabsPreviewMore"|trans|sw_sanitize }}</span>
@@ -61,12 +53,10 @@
 
     {% if productTabs.elements|length > 0 %}
 
-    {% for el in productTabs.elements|sort((a, b) => a.tab.position <=>
-        b.tab.position) %}
+    {% for el in productTabs.elements|sort((a, b) => a.tab.position <=> b.tab.position) %}
         {% set tabRaw = el.tab.translated.name|slugify|lower %}
         {% set tabTabId = "tab-" ~ tabRaw %}
-        {% set tabTabContent = "tab-" ~ tabRaw ~ "-pane"
-        %}
+        {% set tabTabContent = "tab-" ~ tabRaw ~ "-pane" %}
 
         <div class="tab-pane fade"
             id="{{ tabTabContent }}"
