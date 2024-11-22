@@ -11,9 +11,10 @@
 
 {% for el in productTabs.elements|sort((a, b) => a.tab.position <=>
     b.tab.position) %}
-    {% set tabTabId = "tab-" ~ el.tab.translated.name|lower %}
-    {% set tabTabHref = "#tab-" ~ el.tab.translated.name|lower ~ "-pane" %}
-    {% set tabTabContent = "tab-" ~ el.tab.translated.name|lower ~ "-pane" %}
+    {% set tabRaw = el.tab.translated.name|slugify|lower %}
+    {% set tabTabId = "tab-" ~ tabRaw %}
+    {% set tabTabHref = "#tab-" ~ tabRaw ~ "-pane" %}
+    {% set tabTabContent = "tab-" ~ tabRaw ~ "-pane" %}
 
     <li class="nav-item">
         <a class="nav-link product-detail-tab-navigation-link"
@@ -62,8 +63,9 @@
 
     {% for el in productTabs.elements|sort((a, b) => a.tab.position <=>
         b.tab.position) %}
-        {% set tabTabId = "tab-" ~ el.tab.translated.name|lower %}
-        {% set tabTabContent = "tab-" ~ el.tab.translated.name|lower ~ "-pane"
+        {% set tabRaw = el.tab.translated.name|slugify|lower %}
+        {% set tabTabId = "tab-" ~ tabRaw %}
+        {% set tabTabContent = "tab-" ~ tabRaw ~ "-pane"
         %}
 
         <div class="tab-pane fade"
