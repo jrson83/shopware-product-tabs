@@ -14,12 +14,12 @@ class TabTranslationCollection extends EntityCollection
     /**
      * @return array<string>
      */
-    public function getCategoryIds(): array
+    public function getTabIds(): array
     {
         return $this->fmap(fn (TabTranslationEntity $tabTranslation) => $tabTranslation->getTabId());
     }
 
-    public function filterByCategoryId(string $id): self
+    public function filterByTabId(string $id): self
     {
         return $this->filter(fn (TabTranslationEntity $tabTranslation) => $tabTranslation->getTabId() === $id);
     }
