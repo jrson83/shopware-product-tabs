@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace ProductTab\Core\Content\Tab\Aggregate\TabTranslation;
 
-use ProductTab\Core\Content\Tab\TabEntity;
 use Shopware\Core\Framework\DataAbstractionLayer\TranslationEntity;
 
 class TabTranslationEntity extends TranslationEntity
@@ -16,8 +15,6 @@ class TabTranslationEntity extends TranslationEntity
     protected ?string $name;
 
     protected ?string $content;
-
-    protected ?TabEntity $tab;
 
     public function getTabId(): string
     {
@@ -47,15 +44,6 @@ class TabTranslationEntity extends TranslationEntity
     public function setContent(?string $content): void
     {
         $this->content = $content;
-    }
-    public function getTab(): ?TabEntity
-    {
-        return $this->tab;
-    }
-
-    public function setTab(TabEntity $tab): void
-    {
-        $this->tab = $tab;
     }
 
     public function getTabVersionId(): string
